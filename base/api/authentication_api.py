@@ -9,7 +9,6 @@ from utils.constants.routes import APIRoutes
 
 
 def get_auth_token_api(payload: AuthUser) -> Response:
-    print(payload)
     client = Client(base_url=base_settings.api_url)
     return client.post(f'{APIRoutes.AUTH}',  auth=(payload.email, payload.password))
 
@@ -31,7 +30,7 @@ def get_auth_token(payload: AuthUser) -> str:
 
     response = get_auth_token_api(payload)
     json_response = response.json()
-    print(json_response)
+    # print(json_response)
     assert response.status_code == HTTPStatus.OK
     assert json_response.get('token')
 
